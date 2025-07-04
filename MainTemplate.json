@@ -1,0 +1,1070 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "apiappServiceName": {
+      "type": "string",
+      "defaultValue": "ews-api-arm-app",
+      "metadata": {
+        "description": "Name of the App Service"
+      }
+    },
+    "SubscriptionIDName": {
+      "type": "string",
+      "defaultValue": "microsoft-Entra-SubscriptionID",
+      "metadata": {
+        "description": "Name of the secret in the Azure Key Vault to store the SubscriptionID."
+      }
+    },
+    "SubscriptionID": {
+      "type": "secureString",
+      "metadata": {
+        "description": "SubscriptionID value."
+      }
+    },
+    "TenantIDName": {
+      "type": "string",
+      "defaultValue": "microsoft-Entra-TenantID",
+      "metadata": {
+        "description": "Name of the secret in the Azure Key Vault to store the TenantID."
+      }
+    },
+
+    "ClientName": {
+      "type": "string",
+      "defaultValue": "microsoft-Entra-Client-Secret",
+      "metadata": {
+        "description": "Name of the secret in the Azure Key Vault to store the ClientSecret."
+      }
+    },
+    "ClientSecret": {
+      "type": "secureString",
+      "metadata": {
+        "description": "value of the ClientSecret."
+      }
+    },
+    "ClientIDName": {
+      "type": "string",
+      "defaultValue": "microsoft-Entra-ClientID",
+      "metadata": {
+        "description": "Name of the secret in the Azure Key Vault to store the ClientID."
+      }
+    },
+    "ClientID": {
+      "type": "secureString",
+      "metadata": {
+        "description": "Value of the ClientID"
+      }
+    },
+    "TenantID": {
+      "type": "secureString",
+      "metadata": {
+        "description": "Value of the TenantID"
+      }
+    },
+    "managedIdentityName": {
+      "type": "string",
+      "defaultValue": "ews-managed-identity",
+      "metadata": {
+        "description": "Name of the managed-identity."
+      }
+    },
+    "apiappServicePlanName": {
+      "type": "string",
+      "defaultValue": "ews-api-serviceplan",
+      "metadata": {
+        "description": "Name of the api App Service Plan"
+      }
+    },
+    "uiappServicePlanName": {
+      "type": "string",
+      "defaultValue": "ews-ui-serviceplan",
+      "metadata": {
+        "description": "Name of the ui App Service Plan"
+      }
+    },
+    "uiAppServiceName": {
+      "type": "string",
+      "defaultValue": "ews-ui-arm-app",
+      "metadata": {
+        "description": "Name of the UI App Service"
+      }
+    },
+    "keyVaultName": {
+      "type": "string",
+      "defaultValue": "ews-arm-keyvault",
+      "metadata": {
+        "description": "Name of the Key Vault"
+      }
+    },
+    "searchServiceName": {
+      "type": "string",
+      "defaultValue": "ewscognitivesearch",
+      "metadata": {
+        "description": "Name of the Azure Cognitive Search service."
+      }
+    },
+    "searchServiceAPIKey": {
+      "type": "string",
+      "defaultValue": "search-Service-API-Key",
+      "metadata": {
+        "description": "Name of the secret in the Azure Key Vault to store the searchServiceAPIKey."
+      }
+    },
+    "ServerInstance": {
+      "type": "string",
+      "defaultValue": "ews-sql-server",
+      "metadata": {
+        "description": "Name of the Sql Server Instance"
+      }
+    },
+    "Database": {
+      "type": "string",
+      "defaultValue": "ews-sql-db",
+      "metadata": {
+        "description": "Name of the Sql DB Instance"
+      }
+    },
+    "SQLUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "sql usename"
+      }
+    },
+    "SQLPassword": {
+      "type": "secureString",
+      "metadata": {
+        "description": "sql Password"
+      }
+    },
+    "elasticPoolStorageSize": {
+        "type": "string",
+        "defaultValue": "1073741824",
+        "metadata": {
+            "description": "The size in bytes of the elastic pool storage allocated."
+        }
+    },
+    "ResourceGroupName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the ResourceGroupName"
+      }
+    },
+    "FileShareName": {
+      "type": "string",
+      "defaultValue": "mount",
+      "metadata": {
+        "description": "Name of the Mount FileShareName"
+      }
+    },
+    "containerPath": {
+      "type": "string",
+      "defaultValue": "/usr/share/nginx/html/assets",
+      "metadata": {
+        "description": "Path in the container to mount the file share"
+      }
+    },
+    "storageAccountName": {
+      "type": "string",
+      "defaultValue": "ewsworkspacesg",
+      "metadata": {
+        "description": "Name of the storageaccount name"
+      }
+    },
+    "Location": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the  Location"
+      }
+    },
+    "openAIName": {
+       "type": "string",
+       "defaultValue": "ews-openAI",
+       "metadata": {
+         "description": "Name of the Open AI Cognitive Service"
+       }
+     },
+    "OpenAIAPIKey": {
+      "type": "string",
+      "defaultValue": "azure-OpenAI-API-Key",
+      "metadata": {
+        "description": "Name of the secret in the Azure Key Vault to store the OpenAIAPIKey."
+      }
+    },
+    "ewsassets": {
+      "type": "string",
+      "defaultValue": "https://ewsassets.blob.core.windows.net/assets/",
+      "metadata": {
+        "description": "Storage account which has all the assets related to EWS."
+      }
+    },
+    "smtp-Organisation-Name": {
+      "type": "string",
+      "defaultValue": "Evoke Technologies Pvt Ltd",
+      "metadata": {
+        "description": "Please enter the name of your Organization"
+      }
+    },
+    "smtp-Server": {
+      "type": "string",
+      "defaultValue": "mail.smtp2go.com",
+      "metadata": {
+        "description": "Please enter smtp server DNS Name"
+      }
+    },
+    "smtp-Port": {
+       "type": "int",
+      "defaultValue": 2525,
+      "metadata": {
+        "description": "Value of the smtp port"
+      }
+    },
+    "smtp-From-Email-Address": {
+      "type": "string",
+      "defaultValue": "EWSAdmin@evoketechnologies.com",
+      "metadata": {
+        "description": "Please enter from email address of smtp server"
+      }
+    },
+    "smtp-From-Email-Password": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Please enter the password for smtp email address"
+      }
+    }
+
+  },
+  
+  "variables": {
+      "apiappService": "[uri(concat('https://', parameters('apiappServiceName'), '.azurewebsites.net'), '')]",
+      "lengthOfapiUri": "[length(variables('apiappService'))]",
+      "lastCharapi": "[substring(variables('apiappService'), sub(variables('lengthOfapiUri'), 1), 1)]",
+      "apiappServiceUrl": "[if(equals(variables('lastCharapi'), '/'), substring(variables('apiappService'), 0, sub(variables('lengthOfapiUri'), 1)), variables('apiappService'))]",
+
+      "uiappService": "[uri(concat('https://', parameters('uiAppServiceName'), '.azurewebsites.net'), '')]",
+      "lengthOfuiUri": "[length(variables('uiappService'))]",
+      "lastCharui": "[substring(variables('uiappService'), sub(variables('lengthOfuiUri'), 1), 1)]",
+      "uiappServiceUrl": "[if(equals(variables('lastCharui'), '/'), substring(variables('uiappService'), 0, sub(variables('lengthOfuiUri'), 1)), variables('uiappService'))]",
+
+      "searchServiceUrl": "[uri(concat('https://', parameters('searchServiceName'), '.search.windows.net'), '')]",
+      "searchservicegetdatasourcesendpointurl": "[uri(concat('https://', parameters('searchServiceName'), '.search.windows.net/datasources?api-version=2023-07-01-Preview'),'')]",
+      "searchservicecreateindexendpointurl": "[uri(concat('https://', parameters('searchServiceName'), '.search.windows.net/indexes?api-version=2020-06-30'),'')]",
+      "searchservicegetindexesendpointurl": "[uri(concat('https://', parameters('searchServiceName'), '.search.windows.net/indexes?api-version=2020-06-30&$select=name'),'')]",
+
+      "openAIServiceUrl": "[uri(concat('https://', parameters('openAIName'), '.openai.azure.com'), '')]"
+
+  },
+
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2023-01-01",
+      "name": "[parameters('apiappServicePlanName')]",
+      "location": "[parameters('Location')]",
+      "sku": {
+        "name": "B3",
+        "tier": "Basic"
+      },
+      "properties": {
+        "name": "[parameters('apiappServicePlanName')]",
+        "reserved": true,
+        "isSpot": false
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2023-01-01",
+      "name": "[parameters('uiappServicePlanName')]",
+      "location": "[parameters('Location')]",
+      "sku": {
+        "name": "B3",
+        "tier": "Basic"
+      },
+      "properties": {
+        "name": "[parameters('uiappServicePlanName')]",
+        "reserved": true,
+        "isSpot": false
+      }
+    },
+    {
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "apiVersion": "2023-01-31",
+      "name": "[parameters('managedIdentityName')]",
+      "location": "[parameters('Location')]"
+    },
+    {
+    "type": "Microsoft.Authorization/roleAssignments",
+    "apiVersion": "2022-04-01",
+    "name": "[guid(parameters('managedIdentityName'), 'CognitiveServicesOpenAIContributor')]",
+    "dependsOn": [
+          "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]"
+        ],
+    "properties": {
+      "roleDefinitionId": "[concat('/subscriptions/', parameters('SubscriptionID'), '/providers/Microsoft.Authorization/roleDefinitions/', 'a001fd3d-188f-4b5d-821b-7da978bf7442')]",
+      "principalId": "[reference(parameters('managedIdentityName'), '2023-01-31').clientId]",
+      "scope": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/', parameters('ResourceGroupName'))]",
+      "principalType": "ServicePrincipal" 
+    }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2023-04-01",
+      "name": "[parameters('storageAccountName')]",
+      "location": "[parameters('Location')]",
+      "kind": "StorageV2",
+      "sku": {
+          "name": "Standard_LRS",
+          "tier": "Standard"
+      },
+      "tags": {
+          "environment": "dev"
+      },
+      "properties": {
+          "supportsHttpsTrafficOnly": true
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "apiVersion": "2023-01-01",
+      "name":  "[concat(parameters('storageAccountName'), '/default/', parameters('FileShareName'))]",
+      "dependsOn": [
+          "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+      ],
+      "properties": {
+          "shareQuota": "5120"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2023-01-01",
+      "name": "[parameters('apiappServiceName')]",
+      "location": "[parameters('Location')]",
+      "kind": "app",
+      "identity": {
+        "type": "SystemAssigned, UserAssigned",
+        "userAssignedIdentities": {
+          "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]": {}
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('apiappServicePlanName'))]",
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]"
+      ],
+      "properties": {
+        "name": "[parameters('apiappServiceName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('apiappServicePlanName'))]",
+        "siteConfig": {
+          "numberOfWorkers": 1,
+          "linuxFxVersion": "DOCKER|evokebilling/acceleratorapi:2.0.0",
+          "acrUseManagedIdentityCreds": false,
+          "alwaysOn": true,  
+          "cors": {  
+          "allowedOrigins": [
+            "[variables('uiappServiceUrl')]"
+              ],
+              "allowedHeaders": ["*"],
+            "allowedMethods": ["GET", "POST", "PUT", "DELETE"],
+            "exposedHeaders": ["*"]
+            }
+          },
+          "httpsOnly": true
+        },
+        "tags": {
+          "environment": "dev"
+        }
+    },
+    
+    {
+        "type": "Microsoft.Web/sites/config",
+        "apiVersion": "2023-01-01",
+        "name": "[concat(parameters('apiappServiceName'), '/appsettings')]",
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/sites', parameters('apiappServiceName'))]",
+          "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+        ],
+        "properties": {
+          "JWT_AUDIENCE": "[variables('apiappServiceUrl')]",
+          "JWT_ISSUER": "[variables('apiappServiceUrl')]",
+          "KEY_VAULT_URL": "[reference(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))).vaultUri]",
+          "API_URL": "[variables('apiappServiceUrl')]"
+        },
+        "tags": {
+          "environment": "dev"
+        }
+    },
+
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2023-01-01",
+      "name": "[parameters('uiAppServiceName')]",
+      "location": "[parameters('Location')]",
+      "kind": "app",
+      "identity": {
+        "type": "SystemAssigned, UserAssigned",
+        "userAssignedIdentities": {
+          "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]": {}
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('uiappServicePlanName'))]",
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]",
+        "[resourceId('Microsoft.Resources/deploymentScripts', 'mountfile')]"
+      ],
+      "properties": {
+        "name": "[parameters('uiAppServiceName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('uiappServicePlanName'))]",
+        "siteConfig": {
+          "numberOfWorkers": 1,
+          "linuxFxVersion": "DOCKER|evokebilling/searchacceleratorui:2.0.0",
+          "acrUseManagedIdentityCreds": false,
+          "alwaysOn": true,
+          "cors": {
+            "allowedOrigins": [
+              "[variables('apiappServiceUrl')]"
+            ],
+            "allowedHeaders": ["*"],
+            "allowedMethods": ["GET", "POST", "PUT", "DELETE"],
+            "exposedHeaders": ["*"]
+          },
+        "azureStorageAccounts": {
+          "apiworkspace": {
+            "type": "AzureFiles",
+            "accountName": "[parameters('storageAccountName')]",
+            "shareName": "[parameters('FileShareName')]",
+            "mountPath": "[parameters('containerPath')]",
+            "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2023-01-01').keys[0].value]"
+          }
+        }
+      },
+      "httpsOnly": true
+    },
+    "tags": {
+      "environment": "dev"
+    }
+    },
+    {
+        "type": "Microsoft.Web/sites/config",
+        "apiVersion": "2023-01-01",
+        "name": "[concat(parameters('uiAppServiceName'), '/appsettings')]",
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/sites', parameters('uiAppServiceName'))]",
+          "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+          "[resourceId('Microsoft.Resources/deploymentScripts', 'mountfile')]"
+        ],
+      "properties": {
+        "KEY_VAULT_URL": "[reference(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))).vaultUri]"
+      }
+    },
+
+    {
+        "type": "Microsoft.CognitiveServices/accounts",
+        "apiVersion": "2023-05-01",
+        "name": "[parameters('openAIName')]",
+        "location": "[parameters('Location')]",
+        "identity": {
+              "type": "SystemAssigned"
+        },
+        "sku": {
+            "name": "S0"
+        },
+        "kind": "OpenAI",
+        "properties": {
+            "customSubDomainName": "[parameters('openAIName')]",
+            "networkAcls": {
+                "defaultAction": "Allow"
+            },
+            "publicNetworkAccess": "Enabled"
+    }
+   },
+
+    {
+      "type": "Microsoft.Search/searchServices",
+      "apiVersion": "2023-11-01",
+      "name": "[parameters('searchServiceName')]",
+      "location": "[parameters('Location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "sku": {
+        "name": "basic"
+      },
+      "properties": {
+        "partitionCount": 1,
+        "replicaCount": 1,
+        "publicNetworkAccess": "Enabled", 
+        "networkRuleSet": {
+          "defaultAction": "Allow", 
+          "trustedServiceAccess": "Enabled"
+        }
+      },
+      "tags": {
+        "environment": "dev"
+      }
+    },
+
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2023-02-01",
+      "name": "[parameters('keyVaultName')]",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "standard"
+        },
+        "tenantId": "[parameters('TenantID')]",
+        "accessPolicies": [
+          {
+            "tenantId": "[parameters('TenantID')]",
+            "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName')), '2023-01-31').principalId]",
+            "permissions": {
+              "secrets": [
+                "get",
+                "list",
+                "set",
+                "delete",
+                "recover",
+                "backup",
+                "restore"
+              ]
+            }
+          }
+          
+        ]
+      },
+      "tags": {
+        "environment": "dev"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]"
+      ]
+    },
+  
+    {
+      "type": "Microsoft.KeyVault/vaults/accessPolicies",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/add')]",
+      "properties": {
+        "accessPolicies": [
+          {
+          "tenantId": "[parameters('TenantID')]",
+          "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('apiappServiceName')), '2023-01-01', 'Full').identity.principalId]",
+          "permissions": {
+            "secrets": [
+              "get",
+              "list",
+              "set",
+              "delete",
+              "recover",
+              "backup",
+              "restore"
+            ]
+          }
+        },
+        {
+            "tenantId": "[parameters('TenantID')]",
+            "objectId": "[reference(resourceId('Microsoft.Search/searchServices', parameters('searchServiceName')), '2023-11-01', 'Full').identity.principalId]",
+            "permissions": {
+              "secrets": [
+                "get",
+                "list",
+                "set",
+                "delete",
+                "recover",
+                "backup",
+                "restore"
+              ]
+            }
+          },
+          {
+            "tenantId": "[parameters('TenantID')]",
+            "objectId": "[reference(resourceId('Microsoft.CognitiveServices/accounts', parameters('openAIName')), '2023-05-01', 'Full').identity.principalId]",
+            "permissions": {
+              "secrets": [
+                "get",
+                "list",
+                "set",
+                "delete",
+                "recover",
+                "backup",
+                "restore"
+              ]
+            }
+          }
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('apiappServiceName'))]",
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]",
+        "[resourceId('Microsoft.CognitiveServices/accounts', parameters('openAIName'))]",
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]"
+      ]
+    },
+
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2023-05-01-preview",
+      "name": "[parameters('ServerInstance')]",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "administratorLogin": "[parameters('SQLUsername')]",
+        "administratorLoginPassword": "[parameters('SQLPassword')]"
+      },
+      "tags": {
+        "environment": "dev"
+      },
+      "resources": [
+        {
+          "type": "firewallRules",
+          "apiVersion": "2023-05-01-preview",
+          "name": "AllowAzureServices",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('ServerInstance'))]"
+          ],
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0",
+            "azureIpConfiguration": {
+              "azureServicesAllowed": true
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "apiVersion": "2023-07-01",
+      "name": "pid-895b42a8-8cd9-4042-9b67-3c22b5e5bcb4-partnercenter",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": []
+        }
+      }
+    },
+
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('ServerInstance'), '/', parameters('Database'))]",
+      "location": "[parameters('Location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('ServerInstance'))]"
+      ],
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "edition": "GeneralPurpose",
+        "maxSizeBytes": "[parameters('elasticPoolStorageSize')]",
+        "requestedServiceObjectiveName": "GP_Gen5_2"
+      },
+      "tags": {
+        "environment": "dev"
+      }
+    },
+
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/azure-Blob-Storage-Connection-for-Users-CSV')]",
+      "location": "[parameters('Location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+      ],
+      "properties": {
+      "value": "[concat('DefaultEndpointsProtocol=https;', 'AccountName=', parameters('storageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2023-04-01').keys[0].value, ';EndpointSuffix')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/sql-DB-Connection-String')]",
+      "location": "[parameters('Location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('ServerInstance'), parameters('Database'))]"
+      ],
+      "properties": {
+        "value": "[concat('Server=tcp:', reference(parameters('ServerInstance')).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('Database'), ';Persist Security Info=True;User ID=', parameters('SQLUsername'), ';Password=', parameters('SQLPassword'), ';MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/sql-Db-Template-Conn-String')]",
+      "location": "[parameters('Location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('ServerInstance'), parameters('Database'))]"
+      ],
+      "properties": {
+        "value": "[concat('Server=tcp:', reference(parameters('ServerInstance')).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('Database'), ';Persist Security Info=True;User ID=', parameters('SQLUsername'), ';Password=', parameters('SQLPassword'), ';MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/azure-Get-Storage-Accounts-Endpoint-Url')]",
+      "location": "[parameters('Location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[reference(parameters('storageAccountName')).primaryEndpoints.blob]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/search-Service-Create-Index-Enpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[variables('searchservicecreateindexendpointurl')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/search-Service-Get-DataSources-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[variables('searchservicegetdatasourcesendpointurl')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/',parameters('ClientName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('ClientSecret')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/',parameters('SubscriptionIDName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('SubscriptionID')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/',parameters('TenantIDName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('TenantID')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/',parameters('ClientIDName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('ClientID')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/search-Service-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]"
+      ],
+      "location": "[parameters('Location')]",
+      "properties": {
+        "value": "[variables('searchServiceUrl')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/search-Service-Get-Facet-Fields-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]"
+      ],
+      "properties": {
+        "value": "[concat(variables('searchServiceUrl') ,'indexes/{indexName}?api-version=2020-06-30&')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/search-Service-Get-Facet-Top-Values-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]"
+      ],
+      "properties": {
+        "value": "[concat(variables('searchServiceUrl') ,'indexes/{indexName}/docs/search?api-version=2016-09-01')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/search-Service-Get-Indexers-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]"
+      ],
+      "properties": {
+        "value": "[concat(variables('searchServiceUrl') ,'indexers/?api-version=2020-06-30')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/search-Service-Get-Indexes-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[variables('searchservicegetindexesendpointurl')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/JWTkey')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "HjsOldjixTPnQt4HUAIJSmcon9DfUGEv"
+      }
+    },
+        
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/azure-OpenAI-Deployment-Model')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "gpt-4o"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/azure-OpenAI-Index-Name')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "evoke-projects-index"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/openAI-DataSource-Type')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "AzureCognitiveSearch"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/azure-OpenAI-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.CognitiveServices/accounts', parameters('openAIName'))]"
+      ],
+      "properties": {
+        "value": "[concat(variables('openAIServiceUrl') ,'openai/deployments/{0}/extensions/chat/completions?api-version=2023-07-01-preview')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/azure-OpenAI-ImageAttachment-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.CognitiveServices/accounts', parameters('openAIName'))]"
+      ],
+      "properties": {
+        "value": "[concat(variables('openAIServiceUrl') ,'openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview')]"
+      }
+    },    
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/azure-OpenAI-Web-Endpoint-Url')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.CognitiveServices/accounts', parameters('openAIName'))]"
+      ],
+      "properties": {
+        "value": "[concat(variables('openAIServiceUrl') ,'openai/deployments/{0}/chat/completions?api-version=2024-02-15-preview')]"
+      }
+    },
+
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/smtp-Organisation-Name')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('smtp-Organisation-Name')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/smtp-Server')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('smtp-Server')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/smtp-Port')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('smtp-Port')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/smtp-From-Email-Address')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('smtp-From-Email-Address')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2023-07-01",
+      "name": "[concat(parameters('keyVaultName'), '/smtp-From-Email-Password')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('smtp-From-Email-Password')]"
+      }
+    },
+
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2023-08-01",
+      "name": "mountfile",
+      "location": "[parameters('Location')]",
+      "kind": "AzurePowerShell",
+      "dependsOn": [
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('apiappServicePlanName'))]"
+      ],
+      "properties": {
+        "forceUpdateTag": "1",
+        "containerSettings": {
+          "containerGroupName": "mountappservice"
+        },
+        "storageAccountSettings": {
+          "storageAccountName": "[parameters('StorageAccountName')]",
+          "storageAccountKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')), '2023-04-01').keys[0].value]"
+        },
+        "azPowerShellVersion": "9.7",
+        "arguments": "[concat('-ApiUrl ', parameters('apiappServiceName'), ' -StorageAccountName ', parameters('StorageAccountName'), ' -StorageAccountKey ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')), '2023-04-01').keys[0].value, ' -ResourceGroupName ', parameters('ResourceGroupName'), ' -FileShareName ', parameters('FileShareName'), ' -ImageUrl ', parameters('ewsassets'))]",
+        "primaryScriptUri": "https://raw.githubusercontent.com/evokegit/Accelarator-EWS/main/EWS-V2Mountfile.ps1",
+        "timeout": "PT30M",
+        "cleanupPreference": "OnSuccess",
+        "retentionInterval": "P1D"
+      }
+    },
+    
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2023-07-01",
+      "name": "searchservicekeyDeployment",
+      "dependsOn": [
+          "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+          "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]",
+          "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+        ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.KeyVault/vaults/secrets",
+              "apiVersion": "2023-07-01",
+              "name": "[concat(parameters('keyVaultName'), '/', parameters('searchServiceAPIKey'))]",
+              "properties": {
+                "value": "[listAdminKeys(resourceId('Microsoft.Search/searchServices', parameters('searchServiceName')), '2023-11-01').primaryKey]",
+                "contentType": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2023-07-01",
+      "name": "openaiapiKeyDeployment",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+        "[resourceId('Microsoft.CognitiveServices/accounts', parameters('openAIName'))]",
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.KeyVault/vaults/secrets",
+              "apiVersion": "2023-07-01",
+              "name": "[concat(parameters('keyVaultName'), '/', parameters('OpenAIAPIKey'))]",
+              "properties": {
+                "value": "[listKeys(resourceId('Microsoft.CognitiveServices/accounts', parameters('openAIName')), '2023-05-01').key1]",
+                "contentType": "string"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
