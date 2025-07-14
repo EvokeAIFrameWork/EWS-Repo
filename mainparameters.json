@@ -2,23 +2,59 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "apiappServiceName": { "value": "{{apiappServiceName}}" },
-    "SubscriptionID": { "value": "{{SubscriptionID}}" },
-    "ClientSecret": { "value": "{{ClientSecret}}" },
-    "ClientID": { "value": "{{ClientID}}" },
-    "TenantID": { "value": "{{TenantID}}" },
-    "apiappServicePlanName": { "value": "{{apiappServicePlanName}}" },
-    "uiappServicePlanName": { "value": "{{uiappServicePlanName}}" },
-    "uiAppServiceName": { "value": "{{uiAppServiceName}}" },
-    "keyVaultName": { "value": "{{keyVaultName}}" },
-    "searchServiceName": { "value": "{{searchServiceName}}" },
-    "ServerInstance": { "value": "{{ServerInstance}}" },
-    "Database": { "value": "{{Database}}" },
-    "SQLUsername": { "value": "{{SQLUsername}}" },
-    "SQLPassword": { "value": "{{SQLPassword}}" },
-    "ResourceGroupName": { "value": "{{ResourceGroupName}}" },
-    "storageAccountName": { "value": "{{storageAccountName}}" },
-    "Location": { "value": "{{Location}}" },
-    "openAIName": { "value": "{{openAIName}}" },
+    "apiappServiceName": {
+      "value": "{{apiappServiceName}}"
+    },
+    "SubscriptionID": {
+      "value": "{{SubscriptionID}}"
+    },
+    "ClientSecret": {
+      "value": "{{ClientSecret}}"
+    },
+    "ClientID": {
+      "value": "{{ClientID}}"
+    },
+    "TenantID": {
+      "value": "{{TenantID}}"
+    },
+    "apiappServicePlanName": {
+      "value": "{{apiappServicePlanName}}"
+    },
+    "uiappServicePlanName": {
+      "value": "{{uiappServicePlanName}}"
+    },
+    "uiAppServiceName": {
+      "value": "{{uiAppServiceName}}"
+    },
+    "keyVaultName": {
+      "value": "{{keyVaultName}}"
+    },
+    "searchServiceName": {
+      "value": "{{searchServiceName}}"
+    },
+    "ServerInstance": {
+      "value": "{{ServerInstance}}"
+    },
+    "Database": {
+      "value": "{{Database}}"
+    },
+    "SQLUsername": {
+      "value": "{{SQLUsername}}"
+    },
+    "SQLPassword": {
+      "value": "{{SQLPassword}}"
+    },
+    "ResourceGroupName": {
+      "value": "{{ResourceGroupName}}"
+    },
+    "storageAccountName": {
+      "value": "{{storageAccountName}}"
+    },
+    "Location": {
+      "value": "{{Location}}"
+    },
+    "openAIName": {
+      "value": "{{openAIName}}"
+    }
   }
 }
