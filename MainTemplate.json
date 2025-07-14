@@ -100,6 +100,7 @@
     },
     "searchServiceAPIKey": {
       "type": "string",
+       "defaultValue" : "search-Service-API-Key",
       "metadata": {
         "description": "Name of the secret in the Azure Key Vault to store the searchServiceAPIKey."
       }
@@ -218,6 +219,7 @@
     "smtp-From-Email-Password": {
       "type": "string",
       "metadata": {
+        "defaultValue": "7Hul2Fq22fQZ6k13",
         "description": "Please enter the password for smtp email address"
       }
     }
