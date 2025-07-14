@@ -4,7 +4,6 @@
   "parameters": {
     "apiappServiceName": {
       "type": "string",
-      "defaultValue": "ews-api-arm-app",
       "metadata": {
         "description": "Name of the App Service"
       }
@@ -17,7 +16,7 @@
       }
     },
     "SubscriptionID": {
-      "type": "secureString",
+      "type": "string",
       "metadata": {
         "description": "SubscriptionID value."
       }
@@ -38,7 +37,7 @@
       }
     },
     "ClientSecret": {
-      "type": "secureString",
+      "type": "string",
       "metadata": {
         "description": "value of the ClientSecret."
       }
@@ -51,13 +50,13 @@
       }
     },
     "ClientID": {
-      "type": "secureString",
+      "type": "string",
       "metadata": {
         "description": "Value of the ClientID"
       }
     },
     "TenantID": {
-      "type": "secureString",
+      "type": "string",
       "metadata": {
         "description": "Value of the TenantID"
       }
@@ -71,56 +70,49 @@
     },
     "apiappServicePlanName": {
       "type": "string",
-      "defaultValue": "ews-api-serviceplan",
       "metadata": {
         "description": "Name of the api App Service Plan"
       }
     },
     "uiappServicePlanName": {
       "type": "string",
-      "defaultValue": "ews-ui-serviceplan",
       "metadata": {
         "description": "Name of the ui App Service Plan"
       }
     },
     "uiAppServiceName": {
       "type": "string",
-      "defaultValue": "ews-ui-arm-app",
       "metadata": {
         "description": "Name of the UI App Service"
       }
     },
     "keyVaultName": {
       "type": "string",
-      "defaultValue": "ews-arm-keyvault",
       "metadata": {
         "description": "Name of the Key Vault"
       }
     },
     "searchServiceName": {
       "type": "string",
-      "defaultValue": "ewscognitivesearch",
       "metadata": {
         "description": "Name of the Azure Cognitive Search service."
       }
     },
     "searchServiceAPIKey": {
       "type": "string",
-      "defaultValue": "search-Service-API-Key",
+       "defaultValue" : "search-Service-API-Key",
       "metadata": {
         "description": "Name of the secret in the Azure Key Vault to store the searchServiceAPIKey."
       }
     },
     "ServerInstance": {
       "type": "string",
-      "defaultValue": "ews-sql-server",
       "metadata": {
         "description": "Name of the Sql Server Instance"
       }
     },
     "Database": {
       "type": "string",
-      "defaultValue": "ews-sql-db",
       "metadata": {
         "description": "Name of the Sql DB Instance"
       }
@@ -132,7 +124,7 @@
       }
     },
     "SQLPassword": {
-      "type": "secureString",
+      "type": "string",
       "metadata": {
         "description": "sql Password"
       }
@@ -166,7 +158,6 @@
     },
     "storageAccountName": {
       "type": "string",
-      "defaultValue": "ewsworkspacesg",
       "metadata": {
         "description": "Name of the storageaccount name"
       }
@@ -179,7 +170,6 @@
     },
     "openAIName": {
        "type": "string",
-       "defaultValue": "ews-openAI",
        "metadata": {
          "description": "Name of the Open AI Cognitive Service"
        }
@@ -227,8 +217,9 @@
       }
     },
     "smtp-From-Email-Password": {
-      "type": "securestring",
+      "type": "string",
       "metadata": {
+        "defaultValue": "7Hul2Fq22fQZ6k13",
         "description": "Please enter the password for smtp email address"
       }
     }
