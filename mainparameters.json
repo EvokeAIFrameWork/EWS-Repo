@@ -3,21 +3,15 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "apiappServiceName": { "value": "{{apiappServiceName}}" },
-    "SubscriptionIDName": { "value": "{{SubscriptionIDName}}" },
     "SubscriptionID": { "value": "{{SubscriptionID}}" },
-    "TenantIDName": { "value": "{{TenantIDName}}" },
-    "ClientName": { "value": "{{ClientName}}" },
     "ClientSecret": { "value": "{{ClientSecret}}" },
-    "ClientIDName": { "value": "{{ClientIDName}}" },
     "ClientID": { "value": "{{ClientID}}" },
     "TenantID": { "value": "{{TenantID}}" },
-    "managedIdentityName": { "value": "{{managedIdentityName}}" },
     "apiappServicePlanName": { "value": "{{apiappServicePlanName}}" },
     "uiappServicePlanName": { "value": "{{uiappServicePlanName}}" },
     "uiAppServiceName": { "value": "{{uiAppServiceName}}" },
     "keyVaultName": { "value": "{{keyVaultName}}" },
     "searchServiceName": { "value": "{{searchServiceName}}" },
-    "searchServiceAPIKey": { "value": "{{searchServiceAPIKey}}" },
     "ServerInstance": { "value": "{{ServerInstance}}" },
     "Database": { "value": "{{Database}}" },
     "SQLUsername": { "value": "{{SQLUsername}}" },
@@ -26,10 +20,5 @@
     "storageAccountName": { "value": "{{storageAccountName}}" },
     "Location": { "value": "{{Location}}" },
     "openAIName": { "value": "{{openAIName}}" },
-    "smtp-Organisation-Name": { "value": "{{smtp-Organisation-Name}}" },
-    "smtp-Server": { "value": "{{smtp-Server}}" },
-    "smtp-Port": { "value": {{smtp-Port}} },
-    "smtp-From-Email-Address": { "value": "{{smtp-From-Email-Address}}" },
-    "smtp-From-Email-Password": { "value": "{{smtp-From-Email-Password}}" }
   }
 }
