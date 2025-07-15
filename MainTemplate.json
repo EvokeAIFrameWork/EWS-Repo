@@ -16,7 +16,7 @@
       }
     },
     "SubscriptionID": {
-      "type": "string",
+      "type": "secureString",
       "metadata": {
         "description": "SubscriptionID value."
       }
@@ -37,7 +37,7 @@
       }
     },
     "ClientSecret": {
-      "type": "string",
+      "type": "secureString",
       "metadata": {
         "description": "value of the ClientSecret."
       }
@@ -50,13 +50,13 @@
       }
     },
     "ClientID": {
-      "type": "string",
+      "type": "secureString",
       "metadata": {
         "description": "Value of the ClientID"
       }
     },
     "TenantID": {
-      "type": "string",
+      "type": "secureString",
       "metadata": {
         "description": "Value of the TenantID"
       }
@@ -100,7 +100,7 @@
     },
     "searchServiceAPIKey": {
       "type": "string",
-       "defaultValue" : "search-Service-API-Key",
+      "defaultValue": "search-Service-API-Key",
       "metadata": {
         "description": "Name of the secret in the Azure Key Vault to store the searchServiceAPIKey."
       }
@@ -124,7 +124,7 @@
       }
     },
     "SQLPassword": {
-      "type": "string",
+      "type": "secureString",
       "metadata": {
         "description": "sql Password"
       }
