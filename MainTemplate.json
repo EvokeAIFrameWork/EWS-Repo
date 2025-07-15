@@ -218,8 +218,8 @@
     },
     "smtp-From-Email-Password": {
       "type": "string",
+      "defaultValue": "7Hul2Fq22fQZ6k13",
       "metadata": {
-        "defaultValue": "7Hul2Fq22fQZ6k13",
         "description": "Please enter the password for smtp email address"
       }
     }
